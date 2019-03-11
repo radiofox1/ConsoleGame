@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -36,39 +37,55 @@ public:
 
 
 class Immovable {
-//public:
-//	int posX = 0;
+public:
+	int posX = 0;
+	int posY = 0;
 
-	class Earth {
-	public:
-
-		int posX = 0;
-		int posY = 0;
-
-	};
-
-	class Water {
-	public:
-
-		int posX = 0;
-		int posY = 0;
-
-	};
-
-	class Tree {
-	public:
-
-		int posX = 0;
-		int posY = 0;
-
-	};
+	void Position() {
+		string position = "Imovable";
+		cout << "You on the  of " << position << endl;
+	}
 };
+
+
+/*		class Ground : public Immovable {
+			//public:
+			Ground() {
+//				position = "ground";
+			}
+		}; */
+
+
+		class Ground {
+		public:
+
+			int posX = 0;
+			int posY = 0;
+
+		};
+
+		class Water {
+		public:
+
+			int posX = 0;
+			int posY = 0;
+
+		};
+
+		class Tree {
+		public:
+
+			int posX = 0;
+			int posY = 0;
+
+		};
 
 class Game {
 public:
 	Player player;
 	Monster monster;
 	GameBoard gameboard;
+	Water water;
 
 
 	void draw() {
@@ -150,6 +167,14 @@ public:
 			}
 
 			//      draw();
+		}
+	}
+
+	void stepByWater() {
+		if (player.posX == water.posX && player.posY == water.posY) {
+			cout << "You stepped on water";
+			player.posX++;
+			draw();
 		}
 	}
 };
