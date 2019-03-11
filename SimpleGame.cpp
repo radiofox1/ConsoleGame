@@ -35,6 +35,7 @@ public:
 	const int damage = hp;
 };
 
+//inheritance
 
 class Immovable {
 public:
@@ -93,6 +94,7 @@ public:
 		cout << "The player located " << player.posX << " " << player.posY << "\n";
 
 	}
+//move player
 
 	void moveForward() {
 
@@ -140,6 +142,7 @@ public:
 		}
 
 	}
+//battle player with monster
 
 	void battle() {
 
@@ -169,6 +172,7 @@ public:
 			//      draw();
 		}
 	}
+//step on the water
 
 	void stepByWater() {
 		if (player.posX == water.posX && player.posY == water.posY) {
@@ -190,6 +194,7 @@ int main()
 
 		game.draw();
 		game.battle();
+		game.stepByWater();
 
 		while (1) {
 			cin >> userInput;
