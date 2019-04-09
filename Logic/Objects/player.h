@@ -15,11 +15,13 @@ public:
     void move(int x, int y) {
         setPos(getX() + x, getY() + y);
         if(getX() < 0){
+//            getX() - x;
             cout << "Stop! You have reached the left of the field. Please move away from the edge with the buttons: "
                  << endl << "W to go forward" << endl << "S to go back" << endl << "D to go right" << endl;
         }
 
         if(getX() > GameBoard::BOARD_HEIGHT){
+
 
             cout << "Stop! You have reached the right of the field. Please move away from the edge with the buttons: "
                  << endl <<  "W to go forward" << endl << "S to go back" << endl << "A to go left" << endl;

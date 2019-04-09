@@ -1,0 +1,12 @@
+release/main.o
+release/gameboard.o
+release/monster.o
+release/player.o
+release/gameobject.o
+release/game.o
+release/immovable.o
+release/tree.o
+release/castle.o
+release/water.o
+release/ground.o
+release/idea.o
