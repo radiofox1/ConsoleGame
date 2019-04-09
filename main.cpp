@@ -1,173 +1,113 @@
-#include <QCoreApplication>
 #include <iostream>
+
+#include "Logic/Objects/gameobject.h"
+#include "Logic/Objects/monster.h"
+#include "Logic/Objects/player.h"
+#include "Logic/gameboard.h"
+#include "game.h"
 
 using namespace std;
 
-class Player{
-   public:
-
-    int posX = 0;
-    int posY = 0;
-    int hp = 0;
-    int damage = 0;
-
-};
-
-class Monster{
-public:
-
-    int posX = 1;
-    int posY = 0;
-    int hp = 0;
-    int damage = 0;
-};
-
-class GameBoard{
-public:
-
-    const int maxX = 5;
-    const int maxY = 5;
-    const int hp = 7;
-    const int damage = hp;
-};
-
-
-class Immovable{
-
-class Earth{
-public:
-
-    int posX = 0;
-    int posY = 0;
-
-};
-
-class Water{
-public:
-
-    int posX = 0;
-    int posY = 0;
-
-};
-
-class Tree{
-public:
-
-    int posX = 0;
-    int posY = 0;
-
-};
-};
-
-class Game{
-public:
-    Player player;
-    Monster monster;
-    GameBoard gameboard;
-
-
-void draw(){
-
-    cout<<"The player located "<<player.posX<<" "<<player.posY<<"\n";
-
-}
-
-void moveForward() {
-
-    if(player.posY < gameboard.maxY){
-        player.posY++;
-        draw();
-    }
-    else{
-        cout<<"You have reached the top of the field. Choose a letter: " << endl << "S to go back"
-           << endl << "A to go left" << endl << "D to go right" << endl;
-
-    }
-}
-void moveBackward() {
-
-    if(player.posY > 0){
-        player.posY--;
-        draw();
-    }
-    else{
-        cout<<"You have reached the bottom of the field. Choose a letter: " << endl << "W to go forward"
-           << endl << "A to go left" << endl << "S to go right" << endl;
-    }
-}
-void moveRight() {
-
-    if(player.posX < gameboard.maxX){
-        player.posX++;
-        draw();
-    }
-    else{
-        cout<<"You have reached the right of the field. Choose a letter: " << endl << "W to go forward"
-           << endl << "S to go back" << endl << "A to go left" << endl;
-    }
-}
-void moveLeft() {
-
-    if(player.posX > 0){
-        player.posX--;
-        draw();
-    }
-    else{
-        cout<<"You have reached the left of the field. Choose a letter: " << endl << "W to go forward"
-           << endl << "S to go back" << endl << "D to go right" << endl;
-    }
-
-}
-
-void battle() {
-
-//    if(player.posX && player.posY == monster.posX && monster.posY){
-    if(player.posX == monster.posX){
-        cout << "You met a monster";
-        if (player.hp != 0){
-            monster.damage++;
-            cout << "monster damage: "<< monster.damage << endl;
-            player.hp--;
-            cout << "player hp: " << player.hp;
-        } else {
-    cout << "Game over";
-    }
-        if (monster.hp != 0){
-            player.damage++;
-            cout << "player damage: "<< player.damage << endl;
-            monster.hp--;
-            cout << "monster hp: " << monster.hp;
-        } else {
-    cout << "You beat the monster";
-        }
-
-//      draw();
-        }
-    }
-};
-
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
-    Game game;
 
-    char userInput='o';
+   // Game game;
+ //   game.initializePlayer(player_name)
 
-    game.draw();
-    game.battle();
 
-while (1) {
-cin >> userInput;
-     if (userInput == 'w') {
-     game.moveForward();
-     } else if (userInput == 'a') {
-     game.moveLeft();
-     } else if (userInput == 'd') {
-     game.moveRight();
-     } else if (userInput == 's') {
-     game.moveBackward();
-     }
+    Player mPlayer("Geralt from Rivia");
+    Monster mMonster("Drowner");
+
+    mMonster.setPos(1, 1);
+//    mMonster.setPos(1, 2);
+    mMonster.setFight(6, 1);
+    mPlayer.setFight(7, 2);
+
+    void limits (int lx, int ly);
+
+    char userInput = 0;
+    cout << "Select your direction: w - go forward, a - go left, s - go backward, d - go right" << endl;
+    while (userInput != 'x') {
+//        cout << "Select your direction: w - go forward, a - go left, s - go backward, d - go right" << endl;
+        cin >> userInput;
+        if (userInput == 'w') {
+            if (mPlayer.getY() + 1 < GameBoard::BOARD_HEIGHT) {
+
+            }
+            mPlayer.move(0, 1);
+        }
+        else if (userInput == 's') {
+            mPlayer.move(0, -1);
+        }
+        else if (userInput == 'a') {
+            mPlayer.move(-1, 0);
+        }
+        else if (userInput == 'd') {
+            mPlayer.move(1, 0);
+        }
+
+
+        if (mPlayer.getX() == mMonster.getX()
+            && mPlayer.getY() == mMonster.getY()) {
+            cout << mPlayer.getName() << " will fight " << mMonster.getName() << endl;
+/*            while (mPlayer.getHp() > 0) {
+                mPlayer.getHp() - mMonster.getDamage();
+                cout << mMonster.getName() <<" damage: " << mMonster.getDamage() << endl;
+               // mPlayer.getHp();
+                cout << mPlayer.getName() << " hp: " << mPlayer.getHp() << endl;
+               // mPlayer.getDamage();
+                cout << mPlayer.getName() <<" damage: " << mPlayer.getDamage() << endl;
+                mMonster.getHp();
+              //  cout << mMonster.getName() << " hp: " << mMonster.getHp() << endl;
+
+            if (mPlayer.getHp() == 0) {
+                 cout << "Game over" << endl;
+            }
+            else if (mMonster.getHp() == 0) {
+                cout << "You killed monster" << endl;
+            }
+} */
+
+            if ( mPlayer.getHp() > mMonster.getHp() ) {
+                for(int i = 0; i <= mMonster.getHp(); i++) {
+                    cout << "PlayerHp = " << mPlayer.getHp() << " " << "MonsterDamage = " << mMonster.getDamage() << endl;
+                    mPlayer.getHp() = mPlayer.getHp() - mMonster.getDamage();
+                    cout << "MonsterHp = " << mMonster.getHp() << " " << "PlayerDamage = " << mPlayer.getDamage() << endl;
+                    mMonster.getHp() = mMonster.getHp() - mPlayer.getDamage();
+
+                        if(mPlayer.getHp() > 0) {
+                            if(mMonster.getHp() == 0){
+                            cout << "You win the monster!" << endl;
+                            }
+                        }
+                        else{
+                           cout << "GameOver!" << endl;
+                        }
+            //        }
+                }
+            }
+            else {
+                for(int i = 0; i <= mPlayer.getHp(); i++) {
+                    cout << "PlayerHp = " << mPlayer.getHp() << " " << "MonsterDamage = " << mMonster.getDamage() << endl;
+                    mPlayer.getHp() = mPlayer.getHp() - mMonster.getDamage();
+                    cout << "MonsterHp = " << mMonster.getHp() << " " << "PlayerDamage = " << mPlayer.getDamage() << endl;
+                    mMonster.getHp() = mMonster.getHp() - mPlayer.getDamage();
+
+                        if(mPlayer.getHp() > 0) {
+                            if(mMonster.getHp() == 0){
+                            cout << "You win the monster!" << endl;
+                            }
+                        }
+                        else{
+                           cout << "GameOver!" << endl;
+                        }
+                }
+            }
 }
 
-    return a.exec();
+
+            mPlayer.draw();
+        }
+
+    return 0;
 }
