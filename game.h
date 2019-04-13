@@ -10,16 +10,10 @@ class Game
 {
 public:
 
-    void initializePlayer(string &name)
+    void initializePlayer(string &plName)
     {
         cout << "Enter your name: ";
-        cin >> name;
-    }
-
-    void initializeMonster(string &name)
-    {
-        cout << "Enter monster name: ";
-        cin >> name;
+        cin >> plName;
     }
 
 

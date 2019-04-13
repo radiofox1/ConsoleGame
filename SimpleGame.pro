@@ -44,4 +44,5 @@ HEADERS += \
     Logic/Objects/castle.h \
     Logic/Objects/water.h \
     Logic/Objects/ground.h \
-    consolecolor.h
+    consolecolor.h \
+    Logic/battle.h

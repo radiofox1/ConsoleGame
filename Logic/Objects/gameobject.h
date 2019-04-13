@@ -56,8 +56,8 @@ public:
         fightDamage = damage;
     }
 
-    int getX() { return posX; }
-    int getY() { return posY; }
+    int& getX() { return posX; }
+    int& getY() { return posY; }
     int& getHp() { return fightHp; }
     int& getDamage() { return fightDamage; }
     string getName() { return mName; }

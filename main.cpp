@@ -4,24 +4,27 @@
 #include "Logic/Objects/monster.h"
 #include "Logic/Objects/player.h"
 #include "Logic/gameboard.h"
+#include "Logic/battle.h"
 #include "game.h"
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
+    int sumHp = 0;
+    string plName;
+    Game mGame;
+    mGame.initializePlayer(plName);
 
-   // Game game;
- //   game.initializePlayer(player_name)
 
-
-    Player mPlayer("Geralt from Rivia");
+ //   Player mPlayer("Geralt from Rivia");
+    Player mPlayer(plName);
     Monster mMonster("Drowner");
 
     mMonster.setPos(1, 1);
 //    mMonster.setPos(1, 2);
-    mMonster.setFight(6, 1);
-    mPlayer.setFight(7, 2);
+    mMonster.setFight(55, 2);
+    mPlayer.setFight(60, 5);
 
     void limits (int lx, int ly);
 
@@ -31,9 +34,6 @@ int main(int argc, char *argv[])
 //        cout << "Select your direction: w - go forward, a - go left, s - go backward, d - go right" << endl;
         cin >> userInput;
         if (userInput == 'w') {
-            if (mPlayer.getY() + 1 < GameBoard::BOARD_HEIGHT) {
-
-            }
             mPlayer.move(0, 1);
         }
         else if (userInput == 's') {
@@ -49,59 +49,70 @@ int main(int argc, char *argv[])
 
         if (mPlayer.getX() == mMonster.getX()
             && mPlayer.getY() == mMonster.getY()) {
-            cout << mPlayer.getName() << " will fight " << mMonster.getName() << endl;
-/*            while (mPlayer.getHp() > 0) {
-                mPlayer.getHp() - mMonster.getDamage();
-                cout << mMonster.getName() <<" damage: " << mMonster.getDamage() << endl;
-               // mPlayer.getHp();
-                cout << mPlayer.getName() << " hp: " << mPlayer.getHp() << endl;
-               // mPlayer.getDamage();
-                cout << mPlayer.getName() <<" damage: " << mPlayer.getDamage() << endl;
-                mMonster.getHp();
-              //  cout << mMonster.getName() << " hp: " << mMonster.getHp() << endl;
 
-            if (mPlayer.getHp() == 0) {
-                 cout << "Game over" << endl;
-            }
-            else if (mMonster.getHp() == 0) {
-                cout << "You killed monster" << endl;
-            }
-} */
+            cout << mPlayer.getName() << " will fight " << mMonster.getName() << endl;
+            cout << "PlayerHp = " << mPlayer.getHp() << " " << "MonsterHp = " << mMonster.getHp() << endl;
+            cout << "MonsterDamage = " << mMonster.getDamage() << endl;
+
 
             if ( mPlayer.getHp() > mMonster.getHp() ) {
-                for(int i = 0; i <= mMonster.getHp(); i++) {
-                    cout << "PlayerHp = " << mPlayer.getHp() << " " << "MonsterDamage = " << mMonster.getDamage() << endl;
+                while (mMonster.getHp() > 0) {
+                //for(int i = 0; i <= mMonster.getHp(); i++) {
+
                     mPlayer.getHp() = mPlayer.getHp() - mMonster.getDamage();
-                    cout << "MonsterHp = " << mMonster.getHp() << " " << "PlayerDamage = " << mPlayer.getDamage() << endl;
+                    cout << "PlayerHp = " << mPlayer.getHp() << " " << "PlayerDamage = " << mPlayer.getDamage() << endl;
+
                     mMonster.getHp() = mMonster.getHp() - mPlayer.getDamage();
+                    cout << "MonsterHp = " << mMonster.getHp() << " " << "MonsterDamage = " << mMonster.getDamage() << endl;
+
+                    sumHp = sumHp + mPlayer.getDamage(); //total damage
+
 
                         if(mPlayer.getHp() > 0) {
-                            if(mMonster.getHp() == 0){
+                            if(mMonster.getHp() <= 0){
                             cout << "You win the monster!" << endl;
+                            cout << "Total player damage: " << sumHp << endl;
+                            mMonster.setPos(1000000, 1000000);
+                            //mMonster = mGround;
                             }
                         }
                         else{
-                           cout << "GameOver!" << endl;
+                           mGame.endGame();
+                           //cout << "GameOver!" << endl;
                         }
-            //        }
                 }
             }
             else {
-                for(int i = 0; i <= mPlayer.getHp(); i++) {
-                    cout << "PlayerHp = " << mPlayer.getHp() << " " << "MonsterDamage = " << mMonster.getDamage() << endl;
+                while (mPlayer.getHp() > 0) {
+            //    for(int i = 0; i <= mPlayer.getHp(); i++) {
                     mPlayer.getHp() = mPlayer.getHp() - mMonster.getDamage();
-                    cout << "MonsterHp = " << mMonster.getHp() << " " << "PlayerDamage = " << mPlayer.getDamage() << endl;
+                    cout << "PlayerHp = " << mPlayer.getHp() << " " << "PlayerDamage = " << mPlayer.getDamage() << endl;
+
                     mMonster.getHp() = mMonster.getHp() - mPlayer.getDamage();
+                    cout << "MonsterHp = " << mMonster.getHp() << " " << "MonsterDamage = " << mMonster.getDamage() << endl;
+                    sumHp = sumHp + mPlayer.getDamage(); //total damage
 
                         if(mPlayer.getHp() > 0) {
-                            if(mMonster.getHp() == 0){
+                            if(mMonster.getHp() <= 0){
                             cout << "You win the monster!" << endl;
+                            mMonster.setPos(1000000, 1000000);
                             }
                         }
                         else{
-                           cout << "GameOver!" << endl;
+
+                           mGame.endGame();
+                          // cout << "GameOver!" << endl;
                         }
-                }
+                    }
+            }
+            //lvl up
+            if (sumHp >= 50){
+                mPlayer.setFight(70, 7);
+                cout << "You moved to the second level! Your health has been updated to 70, damage increased to 7" << endl;
+            }
+            if (sumHp >= 100){
+                mPlayer.setFight(90, 9);
+                cout << "You moved to the second level! Your health has been updated to 90, damage increased to 9" << endl;
             }
 }
 
