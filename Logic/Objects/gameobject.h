@@ -31,21 +31,6 @@ public:
         cout << mName << " is at " << getX() << ":" << getY() << endl;
     }
 
-    void limits (int lx, int ly){
-
-        posX += lx;
-        if((posX > GameBoard::BOARD_HEIGHT) || (posX < 0)){
-            posX -= lx;
-            cout << "You reached the field line" << endl;
-        }
-        posY += ly;
-        if((posY > GameBoard::BOARD_WIDTH) || (posY < 0)){
-            posY -= ly;
-            cout << "You reached the field column  "<< endl;
-        }
-
-    }
-
     void setPos(int x, int y) {
         posX = x;
         posY = y;

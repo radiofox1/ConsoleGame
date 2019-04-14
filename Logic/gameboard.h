@@ -4,7 +4,7 @@
 //#include "Logic/Objects/gameobject.h"
 #include "consoleColor.h"
 
-//const char BOARD_SYMBOL{'.'};
+//const char BOARD_SYMBOL{' '};
 
 class GameBoard {
   /*  private:
@@ -32,21 +32,16 @@ class GameBoard {
             return boardWidth;
         }
 
-        //=======================
-
         int getBoardHeight()
         {
             return boardHeight;
         }
-
-        //=======================
 
         char **getBoard()
         {
             return board;
         }
 
-        //=======================
 
         void Board()
         {

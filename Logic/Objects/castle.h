@@ -4,8 +4,12 @@
 #include "Logic/Objects/immovable.h"
 class Castle : public Immovable
 {
+
 public:
-    Castle();
+    Castle(string name)
+        : Immovable(name){
+
+    }
 };
 
 #endif // CASTLE_H

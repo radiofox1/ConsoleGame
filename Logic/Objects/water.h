@@ -6,7 +6,8 @@
 class Water : public Immovable
 {
 public:
-    Water();
+    Water(string name)
+        : Immovable(name) {}
 };
 
 #endif // WATER_H

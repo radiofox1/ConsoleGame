@@ -5,7 +5,8 @@
 class Tree : public Immovable
 {
 public:
-    Tree();
+Tree(string name)
+        : Immovable(name) {}
 };
 
 #endif // TREE_H

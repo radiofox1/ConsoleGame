@@ -30,8 +30,8 @@ public:
     }
 
 
-    int getX() { return posX; }
-    int getY() { return posY; }
+    int &getX() { return posX; }
+    int &getY() { return posY; }
     string getName() { return mName; }
 };
 

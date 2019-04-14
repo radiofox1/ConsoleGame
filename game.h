@@ -10,18 +10,39 @@ class Game
 {
 public:
 
-    void initializePlayer(string &plName)
+    void initializeGame(string &plName)
     {
         cout << "Enter your name: ";
         cin >> plName;
     }
 
-
     void endGame()
     {
-        cout << "GAME OVER!!!" << endl;
-        system("pause");
+        cout << "Game Over!!!" << endl;
     }
+
+    void reloadGame()
+    {
+        cout << "Reload Game? (Y/N)" << endl;
+    }
+
+ /*   void initializeGameBoard(int width, int height)
+    {
+        int boardNum = 0;
+        do
+        {
+            cout << "Enter the number of columns: ";
+
+            boardNum = int(width);
+        } while (!boardNum);
+        boardNum = 0;
+        do
+        {
+            cout << "Enter the number of rows: ";
+            boardNum = int(height);
+        } while (!boardNum);
+
+    }*/
 
 };
 
