@@ -26,23 +26,6 @@ public:
         cout << "Reload Game? (Y/N)" << endl;
     }
 
- /*   void initializeGameBoard(int width, int height)
-    {
-        int boardNum = 0;
-        do
-        {
-            cout << "Enter the number of columns: ";
-
-            boardNum = int(width);
-        } while (!boardNum);
-        boardNum = 0;
-        do
-        {
-            cout << "Enter the number of rows: ";
-            boardNum = int(height);
-        } while (!boardNum);
-
-    }*/
 
 };
 
